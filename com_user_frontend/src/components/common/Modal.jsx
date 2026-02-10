@@ -1,5 +1,5 @@
+import "../../styles/componentStyles/Modal.css";
 import { useEffect } from "react";
-import "../../styles/Modal.css";
 import { X } from "lucide-react";
 
 export default function Modal({ isOpen, onClose, title, children }) {

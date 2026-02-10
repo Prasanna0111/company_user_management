@@ -2,8 +2,10 @@ import { MapPinHouse, Eye, Pencil, Trash2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import ThreeDotMenu from "../common/ThreeDotMenu";
 import Avatar from "../common/Avatar";
+import { useNavigate } from "react-router-dom";
 
 export default function CompanyCard({ company, onEdit, onDelete }) {
+  const navigate = useNavigate();
   const menuOptions = [
     {
       label: "Edit",
@@ -26,7 +28,10 @@ export default function CompanyCard({ company, onEdit, onDelete }) {
         <div className="company-info-header">
           <div className="company-name-row">
             <h3 className="company-name text-capitalize">{company.name}</h3>
-            <div className="user-count-badge">
+            <div
+              className="user-count-badge"
+              onClick={() => navigate(`/company/${company.id}`)}
+            >
               <Users size={20} />
               <span>{company.user_count || 0}</span>
             </div>

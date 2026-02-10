@@ -19,7 +19,7 @@ export default function LandingPage() {
           </p>
           <div className="hero-actions">
             <Link to="/dashboard" className="btn btn-primary btn-lg">
-              Get Started <ArrowRight size={20} />
+              View Dashboard <ArrowRight size={20} />
             </Link>
           </div>
         </div>

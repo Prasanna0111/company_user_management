@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { MoreVertical } from "lucide-react";
-import "../../styles/ThreeDotMenu.css";
+import "../../styles/componentStyles/ThreeDotMenu.css";
 
 export default function ThreeDotMenu({ options }) {
   const [isOpen, setIsOpen] = useState(false);

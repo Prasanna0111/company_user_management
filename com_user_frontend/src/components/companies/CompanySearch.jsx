@@ -8,7 +8,7 @@ export default function CompanySearch({ searchQuery, handleSearchChange }) {
         <input
           className="input"
           type="text"
-          placeholder="Search company by name or location"
+          placeholder="Search company by name or location..."
           value={searchQuery}
           onChange={handleSearchChange}
         />

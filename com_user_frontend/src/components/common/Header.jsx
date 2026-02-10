@@ -1,4 +1,4 @@
-import "../../styles/Header.css";
+import "../../styles/componentStyles/Header.css";
 import { Building2, User, LayoutDashboard } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 

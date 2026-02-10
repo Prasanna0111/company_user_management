@@ -136,6 +136,7 @@ export default function CompanyDetails() {
           `${data.first_name} ${data.last_name} removed from company`,
         );
         fetchUsers();
+        fetchCompanyData(id);
       }
     } catch (error) {
       console.error(`Error deleting ${type}:`, error);
