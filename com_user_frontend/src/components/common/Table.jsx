@@ -16,7 +16,6 @@ const Table = ({
         <div className="table-loading-overlay">
           <div className="table-loader">
             <Loader2 className="animate-spin" size={32} />
-            <span>Loading data...</span>
           </div>
         </div>
       )}

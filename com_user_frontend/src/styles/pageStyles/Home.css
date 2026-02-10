@@ -17,9 +17,11 @@
 
 .page-header h1 {
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg,
-      var(--text-primary),
-      var(--accent-primary));
+  background: linear-gradient(
+    135deg,
+    var(--text-primary),
+    var(--accent-primary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -225,7 +227,6 @@
     width: 100%;
   }
 }
-
 
 .company-info-header {
   flex: 1;
