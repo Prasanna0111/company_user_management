@@ -72,6 +72,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 
 .company-address {
@@ -113,10 +114,8 @@
   margin-top: auto;
 }
 
-/* Company Map Card */
 .company-map-card {
   height: 400px;
-  /* Fixed height for professional look */
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -124,7 +123,6 @@
   background: var(--bg-tertiary);
 }
 
-/* Users Section (Full Width) */
 .users-section-full {
   background: #fff;
   border-radius: var(--radius-lg);
@@ -134,7 +132,6 @@
   margin-bottom: var(--spacing-2xl);
 }
 
-/* Responsive Overrides */
 @media (max-width: 1024px) {
   .company-header-section {
     grid-template-columns: 1fr;
@@ -175,7 +172,6 @@
 .users-table {
   width: 100%;
   border-collapse: separate;
-  /* Allows for nice spacing if needed, but collapse is fine */
   border-spacing: 0;
 }
 
@@ -199,10 +195,8 @@
   border-bottom: 1px solid var(--border-light);
   color: var(--text-primary);
   font-size: 0.95rem;
-  /* Slightly larger for readability */
 }
 
-/* Remove border from last row */
 .users-table tbody tr:last-child td {
   border-bottom: none;
 }
@@ -215,13 +209,11 @@
   background: var(--bg-tertiary);
 }
 
-/* Status Badge */
 .status-badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
   border-radius: 20px;
-  /* Pill shape */
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -230,7 +222,6 @@
 
 .status-badge.active {
   background: rgba(22, 163, 74, 0.1);
-  /* Green-600 */
   color: #16a34a;
 }
 
@@ -239,7 +230,6 @@
   color: #4b5563;
 }
 
-/* Action Buttons */
 .action-buttons {
   display: flex;
   gap: var(--spacing-xs);
@@ -268,25 +258,21 @@
 .action-btn.edit:hover {
   color: var(--accent-primary);
   background: rgba(37, 99, 235, 0.1);
-  /* Blue tint */
   border-color: rgba(37, 99, 235, 0.2);
 }
 
 .action-btn.migrate:hover {
   color: var(--warning);
   background: rgba(245, 158, 11, 0.1);
-  /* Amber tint */
   border-color: rgba(245, 158, 11, 0.2);
 }
 
 .action-btn.delete:hover {
   color: var(--error);
   background: rgba(220, 38, 38, 0.1);
-  /* Red tint */
   border-color: rgba(220, 38, 38, 0.2);
 }
 
-/* Empty State */
 .empty-state-table {
   display: flex;
   flex-direction: column;
@@ -301,7 +287,6 @@
   margin-top: var(--spacing-lg);
 }
 
-/* Map Container Override */
 .map-container {
   height: 100%;
   min-height: 100%;
@@ -326,13 +311,11 @@
   text-align: center;
 }
 
-/* Utility */
 .btn-sm {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
 }
 
-/* Migrate Modal Info */
 .migrate-info {
   padding: var(--spacing-md);
   background: var(--bg-tertiary);
@@ -373,9 +356,16 @@
   .users-table {
     min-width: 600px;
   }
+
+  .company-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .section-header-row h2 {
+    font-size: 1rem;
+  }
 }
 
-/* Pagination Styles */
 .pagination {
   margin-top: var(--spacing-xl);
   display: flex;

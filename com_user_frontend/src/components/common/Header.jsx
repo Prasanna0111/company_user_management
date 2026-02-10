@@ -21,10 +21,12 @@ export default function Header() {
 
         <div className="header-right">
           {isLandingPage ? (
-            <Link to="/dashboard" className="btn btn-primary">
-              <LayoutDashboard size={18} />
-              Go to Dashboard
-            </Link>
+            <div className="go-to-dashboard">
+              <Link to="/dashboard" className="btn btn-primary">
+                <LayoutDashboard size={18} />
+                Go to Dashboard
+              </Link>
+            </div>
           ) : (
             <div className="user-info">
               <span className="user-name">Admin</span>

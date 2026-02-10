@@ -294,7 +294,7 @@ export default function CompanyDetails() {
 
           <div className="users-section-full fade-in">
             <div className="section-header-row">
-              <h2>Company Users</h2>
+              <h2>Users</h2>
               <Button variant="primary" size="sm" onClick={handleAddUser}>
                 <Plus size={16} />
                 Add User

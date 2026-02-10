@@ -14,7 +14,7 @@ export default function CompanyCardBig({ company, companyMenuOptions }) {
       <div className="company-info-card fade-in">
         <div className="info-card-header">
           <div className="company-logo">
-            <Avatar name={company.name} size="lg" />
+            <Avatar name={company.name} size="md" />
           </div>
           <div className="company-info">
             <h1 className="text-capitalize">{company.name}</h1>
