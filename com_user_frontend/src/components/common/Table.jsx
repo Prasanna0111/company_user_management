@@ -1,4 +1,4 @@
-import { ChevronUp, ChevronDown, Loader2 } from "lucide-react";
+import { Loader2, ArrowUpDown } from "lucide-react";
 import "../../styles/componentStyles/Table.css";
 
 const Table = ({
@@ -27,33 +27,25 @@ const Table = ({
                 <div className="th-content">
                   <div
                     className={`th-label ${column.sortable ? "sortable" : ""}`}
-                    onClick={() => column.sortable && onSort(column.key)}
+                    onClick={() =>
+                      column.sortable && data.length > 1 && onSort(column.key)
+                    }
                   >
                     {column.label}
-                    {column.sortable && (
+                    {column.sortable && data.length > 1 && (
                       <span className="sort-icons">
-                        <ChevronUp
-                          size={12}
+                        <ArrowUpDown
+                          size={16}
                           className={
-                            currentSort.key === column.key &&
-                            currentSort.order === "ASC"
-                              ? "active"
-                              : ""
-                          }
-                        />
-                        <ChevronDown
-                          size={12}
-                          className={
-                            currentSort.key === column.key &&
-                            currentSort.order === "DESC"
-                              ? "active"
-                              : ""
+                            currentSort.key === column.key
+                              ? `active ${currentSort.order.toLowerCase()}`
+                              : "inactive"
                           }
                         />
                       </span>
                     )}
                   </div>
-                  {column.filterable && (
+                  {column.filterable && data.length > 1 && (
                     <div className="column-filter">
                       {column.filterType === "select" ? (
                         <select

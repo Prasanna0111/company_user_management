@@ -1,4 +1,4 @@
-import { MapPinHouse, Eye, Pencil, Trash2, Users } from "lucide-react";
+import { Eye, Pencil, Trash2, Users, MapPinned } from "lucide-react";
 import { Link } from "react-router-dom";
 import ThreeDotMenu from "../common/ThreeDotMenu";
 import Avatar from "../common/Avatar";
@@ -43,7 +43,7 @@ export default function CompanyCard({ company, onEdit, onDelete }) {
       </div>
       <div className="company-details">
         <div className="detail-item">
-          <MapPinHouse />
+          <MapPinned />
           <span className="detail-text">{company.address}</span>
         </div>
       </div>
