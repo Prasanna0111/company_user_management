@@ -230,9 +230,6 @@ export default function UsersList() {
                 value={search}
                 onChange={handleSearchChange}
               />
-              <button type="submit" className="btn btn-secondary btn-sm">
-                Search
-              </button>
             </form>
 
             <div className="global-sort">

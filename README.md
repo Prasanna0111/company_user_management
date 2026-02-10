@@ -23,7 +23,11 @@ A comprehensive full-stack application for managing companies and their associat
 
 ## 🏃 How to Run
 
-Clone the repository and follow the steps below.
+Clone the repository from github / or download the zip file and follow the steps below.
+
+```bash
+git clone https://github.com/Prasanna0111/company_user_management.git
+```
 
 ### 1. Database Setup
 
