@@ -186,7 +186,11 @@ export default function CreateCompanyModal({
       const countryObj = countries.find((c) => c.name === country);
       const countryId = countryObj ? countryObj.id : "";
 
-      const cityId = "";
+      const stateObj = availableStates.find((s) => s.name === state);
+      const stateId = stateObj ? stateObj.id : "";
+
+      const cityObj = availableCities.find((c) => c.name === city);
+      const cityId = cityObj ? cityObj.id : "";
 
       return (
         formData.name !== (companyToEdit.name || "") ||
