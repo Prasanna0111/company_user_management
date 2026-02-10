@@ -1,0 +1,78 @@
+.three-dot-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.three-dot-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.three-dot-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 180px;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  z-index: 50;
+  overflow: hidden;
+  padding: 4px;
+  animation: fadeIn 0.1s ease-out;
+  transform-origin: top right;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+  gap: 8px;
+}
+
+.menu-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.menu-item.danger {
+  color: var(--error);
+}
+
+.menu-item.danger .menu-icon {
+  color: var(--error);
+}
+
+.menu-item.danger:hover {
+  background: var(--bg-danger-light, rgba(220, 38, 38, 0.05));
+}
