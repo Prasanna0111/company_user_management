@@ -128,7 +128,7 @@ export default function CompanyDetails() {
     try {
       if (type === "company") {
         await companyService.deleteCompany(data.id);
-        navigate("/");
+        navigate("/dashboard");
         toast.success("Company deleted successfully");
       } else if (type === "user") {
         await userService.unassignUser(data.id);

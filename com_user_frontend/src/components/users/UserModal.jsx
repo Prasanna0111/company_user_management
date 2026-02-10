@@ -147,7 +147,8 @@ export default function UserModal({
     !formData.first_name.trim() ||
     !formData.last_name.trim() ||
     !formData.email.trim() ||
-    !validateEmail(formData.email);
+    !validateEmail(formData.email) ||
+    !formData.dob;
 
   const isFormDirty =
     !isEditMode ||
