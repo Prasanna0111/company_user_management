@@ -3,7 +3,6 @@ import "../styles/pageStyles/Home.css";
 import Header from "../components/common/Header";
 import { companyService } from "../services/companyService";
 import { userService } from "../services/userService";
-import CreateCompanyModal from "../components/companies/createCompanyModal";
 import CompanyCard from "../components/companies/CompanyCard";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { Book } from "lucide-react";
@@ -12,6 +11,7 @@ import ConfirmationModal from "../components/common/ConfirmationModal";
 import { toast } from "react-toastify";
 import Analytics from "../components/companies/Analytics";
 import useDebounce from "../hooks/useDebounce";
+import CreateCompanyModal from "../components/companies/CreateCompanyModal";
 
 export default function Home() {
   const [companies, setCompanies] = useState([]);

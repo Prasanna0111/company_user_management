@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "../styles/pageStyles/companyDetails.css";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
-  MapPin,
   Pencil,
   Trash2,
   Edit2,
@@ -16,13 +15,11 @@ import { userService } from "../services/userService";
 import { companyService } from "../services/companyService";
 import Header from "../components/common/Header";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import ThreeDotMenu from "../components/common/ThreeDotMenu";
 import Button from "../components/custom/Button";
-import CompanyMap from "../components/companies/CompanyMap";
 import Table from "../components/common/Table";
 import UserModal from "../components/users/UserModal";
 import MigrateUserModal from "../components/users/MigrateUserModal";
-import CreateCompanyModal from "../components/companies/createCompanyModal";
+import CreateCompanyModal from "../components/companies/CreateCompanyModal";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { formatRelativeTime, formatDate } from "../utils/dateUtils";
 import Avatar from "../components/common/Avatar";
