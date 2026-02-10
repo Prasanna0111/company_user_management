@@ -11,8 +11,8 @@ export default function MigrateUserModal({
   onClose,
   user,
   currentCompanyId,
-  currentCompanyName,
   onUserMigrated,
+  fetchCompanyData,
 }) {
   const [companies, setCompanies] = useState([]);
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
@@ -46,6 +46,7 @@ export default function MigrateUserModal({
       onUserMigrated();
       onClose();
       setSelectedCompanyId("");
+      fetchCompanyData();
     } catch (error) {
       console.error("Error migrating user:", error);
     } finally {

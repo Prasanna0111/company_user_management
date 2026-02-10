@@ -326,12 +326,6 @@
   text-align: center;
 }
 
-.map-fallback-content svg {
-  width: 64px;
-  height: 64px;
-  color: var(--text-tertiary);
-}
-
 /* Utility */
 .btn-sm {
   padding: 0.5rem 1rem;

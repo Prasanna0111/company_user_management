@@ -384,6 +384,7 @@ export default function CompanyDetails() {
         user={selectedUser}
         currentCompanyId={id}
         onUserMigrated={fetchUsers}
+        fetchCompanyData={fetchCompanyData}
       />
 
       <CreateCompanyModal

@@ -17,9 +17,11 @@
 
 .page-header h1 {
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg,
-      var(--text-primary),
-      var(--accent-primary));
+  background: linear-gradient(
+    135deg,
+    var(--text-primary),
+    var(--accent-primary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,11 +117,6 @@
   font-size: 0.875rem;
 }
 
-.detail-item svg {
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
 .detail-text {
   line-height: 1.4;
 }
@@ -172,10 +169,6 @@
   gap: var(--spacing-lg);
   text-align: center;
   color: var(--text-secondary);
-}
-
-.empty-state svg {
-  opacity: 0.3;
 }
 
 .empty-state h3 {
