@@ -7,7 +7,7 @@ export default function Analytics({ stats, handleCreateCompany }) {
     <>
       {" "}
       <div className="section-header">
-        <h2 className="analytics-heading">Analytics Overview</h2>
+        <h2 className="analytics-heading">Overview</h2>
         <div className="header-actions">
           <button
             onClick={() => navigate("/users")}

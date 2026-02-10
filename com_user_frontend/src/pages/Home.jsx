@@ -163,7 +163,7 @@ export default function Home() {
           />
           <Analytics stats={stats} handleCreateCompany={handleCreateCompany} />
           <div className="section-header">
-            <h2>Company List</h2>
+            <h2>All Companies</h2>
             <div className="sort-controls">
               <select
                 className="input"
@@ -182,7 +182,6 @@ export default function Home() {
           {loading ? (
             <div className="loading-state">
               <LoadingSpinner />
-              <p>Loading companies...</p>
             </div>
           ) : error ? (
             <div className="error-state">
