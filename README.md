@@ -1,6 +1,6 @@
 # Company & User Management System
 
-Live Demo: [https://company-user-management.vercel.app](https://company-user-management.vercel.app)
+Live Demo: [https://company-user-management-jade.vercel.app/](https://company-user-management-jade.vercel.app/)
 
 A comprehensive full-stack application for managing companies and their associated users. This system provides a modern dashboard for data visualization, location mapping, and robust user management.
 
@@ -23,10 +23,14 @@ A comprehensive full-stack application for managing companies and their associat
 
 ## 🏃 How to Run
 
+Clone the repository and follow the steps below.
+
 ### 1. Database Setup
+
 Ensure you have PostgreSQL installed and running. Execute the schema (usually found in `com_user_backend/src/models/schema.sql`) to set up the necessary tables.
 
 ### 2. Backend Setup
+
 ```bash
 cd com_user_backend
 npm install
@@ -35,6 +39,7 @@ npm run dev
 ```
 
 ### 3. Frontend Setup
+
 ```bash
 cd com_user_frontend
 npm install
@@ -45,4 +50,5 @@ npm run dev
 The application will be available at `http://localhost:5173` (Frontend) and the API will run at `http://localhost:3000` (Backend).
 
 ## 📄 Deployment
+
 The project is configured for deployment on **Vercel** (Frontend) and **Render** (Backend & DB).
