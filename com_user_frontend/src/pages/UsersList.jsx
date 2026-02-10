@@ -29,6 +29,7 @@ export default function UsersList() {
     total: 0,
   });
   const [filters, setFilters] = useState({});
+  const [globalFilter, setGlobalFilter] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const [sort, setSort] = useState({ key: "updated_at", order: "DESC" });
@@ -41,7 +42,7 @@ export default function UsersList() {
 
   useEffect(() => {
     fetchUsers();
-  }, [pagination.page, filters, sort, debouncedSearch]);
+  }, [pagination.page, filters, sort, debouncedSearch, globalFilter]);
 
   const fetchUsers = async () => {
     try {
@@ -49,6 +50,7 @@ export default function UsersList() {
       const response = await userService.getAllUsers({
         search: debouncedSearch.trim(),
         ...filters,
+        globalFilter,
         sortBy: sort.key,
         sortOrder: sort.order,
         page: pagination.page,
@@ -231,6 +233,24 @@ export default function UsersList() {
                 onChange={handleSearchChange}
               />
             </form>
+
+            <div className="global-sort">
+              <span className="label">Filter By:</span>
+              <select
+                value={globalFilter}
+                onChange={(e) => {
+                  setGlobalFilter(e.target.value);
+                  setPagination((prev) => ({ ...prev, page: 1 }));
+                }}
+                className="input"
+                style={{ width: "auto" }}
+              >
+                <option value="all">All Users</option>
+                <option value="unassigned">Unassigned</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
 
             <div className="global-sort">
               <span className="label">Sort By:</span>

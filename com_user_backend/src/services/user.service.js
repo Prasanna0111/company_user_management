@@ -7,21 +7,28 @@ export const listUsers = async (filters = {}) => {
     designation,
     active,
     companyId,
+    globalFilter,
     sortBy,
     sortOrder,
     page = 1,
     limit = 10,
   } = filters;
+
   const values = [];
   const conditions = [];
 
-  let query =
-    "SELECT u.*, c.name as company_name FROM users u LEFT JOIN companies c ON u.company_id = c.id";
+  let query = `
+    SELECT u.*, c.name AS company_name
+    FROM users u
+    LEFT JOIN companies c ON u.company_id = c.id
+  `;
 
   if (search) {
     values.push(`%${search.trim()}%`);
     conditions.push(
-      `(u.first_name ILIKE $${values.length} OR u.last_name ILIKE $${values.length} OR u.email ILIKE $${values.length})`,
+      `(u.first_name ILIKE $${values.length}
+        OR u.last_name ILIKE $${values.length}
+        OR u.email ILIKE $${values.length})`,
     );
   }
 
@@ -30,22 +37,34 @@ export const listUsers = async (filters = {}) => {
     conditions.push(`u.designation = $${values.length}`);
   }
 
-  if (active !== undefined && active !== null && active !== "") {
-    values.push(active === "true" || active === true);
-    conditions.push(`u.active = $${values.length}`);
-  }
-
   if (companyId) {
     values.push(companyId);
     conditions.push(`u.company_id = $${values.length}`);
   }
 
-  if (conditions.length > 0) {
+  if (globalFilter && globalFilter !== "all") {
+    switch (globalFilter) {
+      case "unassigned":
+        conditions.push(`u.company_id IS NULL`);
+        break;
+      case "inactive":
+        conditions.push(`u.active = false`);
+        break;
+      case "active":
+        conditions.push(`u.active = true`);
+        break;
+    }
+  } else if (active !== undefined && active !== null && active !== "") {
+    values.push(active === "true" || active === true);
+    conditions.push(`u.active = $${values.length}`);
+  }
+
+  if (conditions.length) {
     query += " WHERE " + conditions.join(" AND ");
   }
 
   const countQuery = query.replace(
-    "SELECT u.*, c.name as company_name",
+    "SELECT u.*, c.name AS company_name",
     "SELECT COUNT(*)",
   );
   const countResult = await pool.query(countQuery, values);
@@ -61,6 +80,7 @@ export const listUsers = async (filters = {}) => {
     updated_at: "u.updated_at",
     company_name: "company_name",
   };
+
   const sortCol = allowedSortColumns[sortBy] || "u.updated_at";
   const order = sortOrder?.toUpperCase() === "ASC" ? "ASC" : "DESC";
   query += ` ORDER BY ${sortCol} ${order}`;
@@ -73,18 +93,16 @@ export const listUsers = async (filters = {}) => {
 
   const result = await pool.query(query, values);
 
-  const allUsersCountResult = await pool.query("SELECT COUNT(*) FROM users");
-  const allActiveUsersCountResult = await pool.query(
-    "SELECT COUNT(*) FROM users WHERE active = true",
+  const allUsersCount = parseInt(
+    (await pool.query("SELECT COUNT(*) FROM users")).rows[0].count,
   );
-  const allUnassignedUsersCountResult = await pool.query(
-    "SELECT COUNT(*) FROM users WHERE company_id IS NULL",
+  const allActiveUsersCount = parseInt(
+    (await pool.query("SELECT COUNT(*) FROM users WHERE active = true")).rows[0]
+      .count,
   );
-
-  const allUsersCount = parseInt(allUsersCountResult.rows[0].count);
-  const allActiveUsersCount = parseInt(allActiveUsersCountResult.rows[0].count);
   const allUnassignedUsersCount = parseInt(
-    allUnassignedUsersCountResult.rows[0].count,
+    (await pool.query("SELECT COUNT(*) FROM users WHERE company_id IS NULL"))
+      .rows[0].count,
   );
 
   return {

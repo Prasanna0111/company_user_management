@@ -11,6 +11,7 @@ export const getAllUsers = async (req, res, next) => {
       sortOrder,
       page,
       limit,
+      globalFilter,
     } = req.body;
     const result = await userService.listUsers({
       search,
@@ -21,6 +22,7 @@ export const getAllUsers = async (req, res, next) => {
       sortOrder,
       page,
       limit,
+      globalFilter,
     });
     res.json({
       success: true,

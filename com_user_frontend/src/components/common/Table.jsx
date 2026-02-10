@@ -45,7 +45,7 @@ const Table = ({
                       </span>
                     )}
                   </div>
-                  {column.filterable && data.length > 1 && (
+                  {column.filterable && (
                     <div className="column-filter">
                       {column.filterType === "select" ? (
                         <select
