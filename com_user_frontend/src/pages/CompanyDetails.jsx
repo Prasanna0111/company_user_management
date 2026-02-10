@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/pageStyles/companyDetails.css";
+import "../styles/pageStyles/CompanyDetails.css";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   Pencil,
