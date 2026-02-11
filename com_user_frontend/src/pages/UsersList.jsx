@@ -176,7 +176,7 @@ export default function UsersList() {
       render: (val, row) => (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <Avatar name={`${row.first_name} ${row.last_name}`} size="sm" />
-          <span>{`${row.first_name} ${row.last_name}`}</span>
+          <span className="text-capitalize">{`${row.first_name} ${row.last_name}`}</span>
         </div>
       ),
     },
@@ -185,7 +185,7 @@ export default function UsersList() {
       key: "company_name",
       label: "Company",
       sortable: true,
-      render: (val) => val || <span className="text-muted">Unassigned</span>,
+      render: (val) => <span className={val ? "text-capitalize" : "text-muted"}>{val ? val : "Unassigned"}</span>,
     },
     { key: "designation", label: "Designation", sortable: true },
     {

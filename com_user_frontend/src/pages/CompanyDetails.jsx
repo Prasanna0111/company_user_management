@@ -221,7 +221,7 @@ export default function CompanyDetails() {
       render: (val, row) => (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <Avatar name={`${row.first_name} ${row.last_name}`} size="sm" />
-          <span>{`${row.first_name} ${row.last_name}`}</span>
+          <span className="text-capitalize">{`${row.first_name} ${row.last_name}`}</span>
         </div>
       ),
     },
