@@ -9,6 +9,7 @@ import {
   Plus,
   ChevronLeft,
   ChevronRight,
+  Download,
 } from "lucide-react";
 import { toast } from "react-toastify";
 import { userService } from "../services/userService";
@@ -22,6 +23,7 @@ import MigrateUserModal from "../components/users/MigrateUserModal";
 import CreateCompanyModal from "../components/companies/CreateCompanyModal";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { formatRelativeTime, formatDate } from "../utils/dateUtils";
+import { exportUsersToExcel } from "../utils/excelUtils";
 import Avatar from "../components/common/Avatar";
 import CompanyCardBig from "../components/companies/CompanyCardBig";
 
@@ -173,6 +175,37 @@ export default function CompanyDetails() {
     setIsMigrateModalOpen(true);
   };
 
+  const handleExportExcel = async () => {
+    try {
+      setTableLoading(true);
+      const data = await userService.getAllUsers({
+        companyId: id,
+        ...filters,
+        sortBy: sort.key,
+        sortOrder: sort.order,
+        noPagination: true,
+      });
+
+      if (!data.success) {
+        throw new Error(data.message || "Failed to fetch data for export");
+      }
+
+      const allUsers = data.data || [];
+      const success = exportUsersToExcel(allUsers, `${company.name}_Users`);
+
+      if (success) {
+        toast.success(`Exported ${allUsers.length} users to Excel`);
+      } else {
+        toast.error("Failed to export excel");
+      }
+    } catch (error) {
+      console.error("Error exporting excel:", error);
+      toast.error("Failed to export excel");
+    } finally {
+      setTableLoading(false);
+    }
+  };
+
   const columns = [
     {
       key: "sno",
@@ -295,10 +328,20 @@ export default function CompanyDetails() {
           <div className="users-section-full fade-in">
             <div className="section-header-row">
               <h2>Users</h2>
-              <Button variant="primary" size="sm" onClick={handleAddUser}>
-                <Plus size={16} />
-                Add User
-              </Button>
+              <div style={{ display: "flex", gap: "12px" }}>
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={handleExportExcel}
+                  disabled={tableLoading || users.length === 0}
+                >
+                  <Download size={16} />
+                  {tableLoading ? "Exporting..." : "Export"}
+                </button>
+                <Button variant="primary" size="sm" onClick={handleAddUser}>
+                  <Plus size={16} />
+                  Add User
+                </Button>
+              </div>
             </div>
             <Table
               columns={columns}

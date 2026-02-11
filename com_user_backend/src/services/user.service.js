@@ -12,6 +12,7 @@ export const listUsers = async (filters = {}) => {
     sortOrder,
     page = 1,
     limit = 10,
+    noPagination = false,
   } = filters;
 
   const values = [];
@@ -85,11 +86,13 @@ export const listUsers = async (filters = {}) => {
   const order = sortOrder?.toUpperCase() === "ASC" ? "ASC" : "DESC";
   query += ` ORDER BY ${sortCol} ${order}`;
 
-  const offset = (page - 1) * limit;
-  values.push(limit);
-  query += ` LIMIT $${values.length}`;
-  values.push(offset);
-  query += ` OFFSET $${values.length}`;
+  if (!noPagination) {
+    const offset = (page - 1) * limit;
+    values.push(limit);
+    query += ` LIMIT $${values.length}`;
+    values.push(offset);
+    query += ` OFFSET $${values.length}`;
+  }
 
   const result = await pool.query(query, values);
 

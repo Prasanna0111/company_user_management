@@ -11,11 +11,13 @@ import {
   Edit2,
   Trash2,
   ArrowLeftRight,
+  Download,
 } from "lucide-react";
 import UserModal from "../components/users/UserModal";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import MigrateUserModal from "../components/users/MigrateUserModal";
 import { formatRelativeTime, formatDate } from "../utils/dateUtils";
+import { exportUsersToExcel } from "../utils/excelUtils";
 import Avatar from "../components/common/Avatar";
 import useDebounce from "../hooks/useDebounce";
 import UsersListAdd from "../components/users/UsersListAdd";
@@ -111,6 +113,38 @@ export default function UsersList() {
   const handleMigrateUser = (user) => {
     setUserToMigrate(user);
     setIsMigrateModalOpen(true);
+  };
+
+  const handleExportExcel = async () => {
+    try {
+      setLoading(true);
+      const response = await userService.getAllUsers({
+        search: debouncedSearch.trim(),
+        ...filters,
+        globalFilter,
+        sortBy: sort.key,
+        sortOrder: sort.order,
+        noPagination: true,
+      });
+
+      if (!response.success) {
+        throw new Error(response.message || "Failed to fetch data for export");
+      }
+
+      const allUsers = response.data;
+      const success = exportUsersToExcel(allUsers, "Users_Full_List");
+
+      if (success) {
+        toast.success(`Exported ${allUsers.length} users to Excel`);
+      } else {
+        toast.error("Failed to export excel");
+      }
+    } catch (error) {
+      console.error("Error exporting excel:", error);
+      toast.error("Failed to export excel");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleConfirmDelete = async () => {
@@ -269,6 +303,15 @@ export default function UsersList() {
                 <option value="first_name-DESC">Name (Z-A)</option>
               </select>
             </div>
+
+            <button
+              className="btn btn-secondary"
+              onClick={handleExportExcel}
+              disabled={loading || users.length === 0}
+            >
+              <Download size={18} />
+              {loading ? "Exporting..." : "Export"}
+            </button>
           </div>
 
           <div className="table-section fade-in">
